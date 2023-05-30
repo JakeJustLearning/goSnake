@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"image/color"
 	"math/rand"
+	"time"
 
 	ebiten "github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
@@ -195,7 +196,15 @@ func (g *Game) Draw(screen *ebiten.Image) {
 func main() {
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowTitle("Snake Extra?")
-	if err := ebiten.RunGame(&Game{}); err != nil {
+	rand.Seed(time.Now().UnixNano())
+	game := &Game{
+		snake:    NewSnake(),
+		food:     NewFood(),
+		gameOver: false,
+		speed:    10,
+	}
+
+	if err := ebiten.RunGame(game); err != nil {
 		panic(err)
 	}
 }
