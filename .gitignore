@@ -19,3 +19,7 @@
 
 # Go workspace file
 go.work
+
+# the script to go get the executable
+#TODO migrate the script and such to the CICD
+*.sh
